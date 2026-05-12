@@ -24,4 +24,8 @@ class LoginCubit extends Cubit<LoginState> {
       emit(const LoginFailure('Invalid credentials'));
     }
   }
+
+  void logout() {
+    emit(LoginInitial());
+  }
 }

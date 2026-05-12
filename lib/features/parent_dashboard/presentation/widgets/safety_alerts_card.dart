@@ -32,14 +32,17 @@ class SafetyAlertsCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                'Safety Alerts',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: RaeyaColors.textPrimary,
+              const Expanded(
+                child: Text(
+                  'Safety Alerts',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: RaeyaColors.textPrimary,
+                  ),
                 ),
               ),
+              const SizedBox(width: 8),
               if (alerts.any((alert) => alert.isActionRequired))
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),

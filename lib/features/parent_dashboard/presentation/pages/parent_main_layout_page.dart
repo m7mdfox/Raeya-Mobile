@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../home/presentation/widgets/raeya_bottom_nav.dart';
 import 'parent_dashboard_page.dart';
+import '../../../parent_insights/presentation/pages/parent_insights_page.dart';
 
 class ParentMainLayoutPage extends StatefulWidget {
   const ParentMainLayoutPage({super.key});
@@ -15,7 +16,7 @@ class _ParentMainLayoutPageState extends State<ParentMainLayoutPage> {
   final List<Widget> _pages = [
     const ParentDashboardPage(),
     const Center(child: Text('Parent Learning View Placeholder')),
-    const Center(child: Text('Parent Insights Placeholder')),
+    const ParentInsightsPage(),
     const Center(child: Text('Parent Safety Placeholder')),
   ];
 

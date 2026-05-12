@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/theme/raeya_colors.dart';
+import '../../../auth/presentation/cubit/login_cubit.dart';
+import '../../../auth/presentation/pages/login_page.dart';
 import '../cubit/parent_dashboard_cubit.dart';
 import '../cubit/parent_dashboard_state.dart';
 import '../widgets/emotional_wellbeing_card.dart';
@@ -21,6 +23,14 @@ class ParentDashboardPage extends StatelessWidget {
         appBar: ParentAppBar(
           userName: 'Sarah',
           onSettingsPressed: () {},
+          onLogout: () {
+            context.read<LoginCubit>().logout();
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => const LoginPage()),
+              (route) => false,
+            );
+          },
         ),
         body: BlocBuilder<ParentDashboardCubit, ParentDashboardState>(
           builder: (context, state) {

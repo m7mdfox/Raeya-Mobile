@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/theme/raeya_colors.dart';
+import '../../../auth/presentation/cubit/login_cubit.dart';
+import '../../../auth/presentation/pages/login_page.dart';
 import '../cubit/kid_home_cubit.dart';
 import '../cubit/kid_home_state.dart';
 import '../widgets/activity_square_card.dart';
@@ -23,6 +25,14 @@ class KidHomePage extends StatelessWidget {
             appBar: KidAppBar(
               userName: 'Sarah',
               onSettingsPressed: () {},
+              onLogout: () {
+                context.read<LoginCubit>().logout();
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LoginPage()),
+                  (route) => false,
+                );
+              },
             ),
             body: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 24),

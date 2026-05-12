@@ -5,12 +5,14 @@ class KidAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String userName;
   final String? avatarUrl;
   final VoidCallback? onSettingsPressed;
+  final VoidCallback? onLogout;
 
   const KidAppBar({
     super.key,
     required this.userName,
     this.avatarUrl,
     this.onSettingsPressed,
+    this.onLogout,
   });
 
   @override
@@ -47,9 +49,40 @@ class KidAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ),
                 ],
               ),
-              child: IconButton(
+              child: PopupMenuButton<String>(
                 icon: const Icon(Icons.settings_outlined, color: RaeyaColors.primary),
-                onPressed: onSettingsPressed,
+                onSelected: (value) {
+                  if (value == 'logout') {
+                    onLogout?.call();
+                  } else if (value == 'settings') {
+                    onSettingsPressed?.call();
+                  }
+                },
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                itemBuilder: (context) => [
+                  const PopupMenuItem(
+                    value: 'settings',
+                    child: Row(
+                      children: [
+                        Icon(Icons.settings_outlined, size: 20, color: RaeyaColors.primary),
+                        SizedBox(width: 12),
+                        Text('Settings'),
+                      ],
+                    ),
+                  ),
+                  const PopupMenuItem(
+                    value: 'logout',
+                    child: Row(
+                      children: [
+                        Icon(Icons.logout, size: 20, color: RaeyaColors.error),
+                        SizedBox(width: 12),
+                        Text('Log Out', style: TextStyle(color: RaeyaColors.error)),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
